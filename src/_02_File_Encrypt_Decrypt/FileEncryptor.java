@@ -1,5 +1,11 @@
 package _02_File_Encrypt_Decrypt;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+
+import javax.swing.JOptionPane;
+
 public class FileEncryptor {
 	/*
 	 * Encryption is the process of encoding a message or information
@@ -19,5 +25,34 @@ public class FileEncryptor {
 	 *
 	 * Create a program that takes a messager.
 	 * Use any key you want (1 - 25) to shift each letter in the users input and save the final result to a file.
+	 * 
+	 * 
+	
 	 */
+	 public static void main(String[] args) {        
+	    
+	    }
+	 String S =   JOptionPane.showInputDialog("enter a string");
+     String one = JOptionPane.showInputDialog("and the amount of shifts");
+    int two = Integer.parseInt(one);
+    int[] shifts;
+    
+	    /* Solution */
+	    public String shiftingLetters(String S, int[] shifts) {
+	         
+	        int previous = 0;
+	        for(int i=shifts.length-1; i>=0; i--){            
+	            shifts[i] = (shifts[i] + previous) % 26;
+	            previous = shifts[i];
+	        }
+	         
+	        char[] chars = S.toCharArray();
+	        for(int i=0; i<chars.length; i++){
+	            chars[i] = (char)('a' + (((int)chars[i] + shifts[i]) % 'a') % 26);
+	        }
+	        return String.valueOf(chars);
+	    }
+	
+	
+
 }
