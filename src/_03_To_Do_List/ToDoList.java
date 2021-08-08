@@ -3,8 +3,11 @@ package _03_To_Do_List;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Random;
@@ -74,6 +77,30 @@ buttonsList.add(oneQ);
 					e.printStackTrace();
 				}
 		});
+		button5.addActionListener((event)->{
+			  
+		   String one = JOptionPane.showInputDialog("which file do you want to load?");
+		   try {
+				BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\aaron\\OneDrive\\Documents\\GitHub\\level5-01-file-io-AaronD07" ));
+				
+				
+				String line = br.readLine();
+				while(line != null){
+					System.out.println(line);
+					line = br.readLine();
+				}
+				
+				br.close();
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		   
+	});
+		
 	}
 	public static void main(String[] args) {
 		new ToDoList();
