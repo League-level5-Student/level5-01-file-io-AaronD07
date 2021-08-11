@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,6 +30,7 @@ public class ToDoList implements ActionListener{
 	private JButton button3 = new JButton("remove task");
 	private JButton button4 = new JButton("save list");
 	private JButton button5 = new JButton("load list");
+	String file;
 	ArrayList<String> buttonsList = new ArrayList<String>();
 
 	public ToDoList() {
@@ -79,10 +81,17 @@ buttonsList.add(oneQ);
 		});
 		button5.addActionListener((event)->{
 			  
-		   String one = JOptionPane.showInputDialog("which file do you want to load?");
+			JFileChooser jfc = new JFileChooser();
+			int returnVal = jfc.showOpenDialog(null);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				String fileName = jfc.getSelectedFile().getAbsolutePath();
+				System.out.println( );
+				System.out.println(fileName);
+				file = fileName;
+			}
 		   try {
-				BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\aaron\\OneDrive\\Documents\\GitHub\\level5-01-file-io-AaronD07" ));
-				
+				BufferedReader br = new BufferedReader(new FileReader(file));
+			
 				
 				String line = br.readLine();
 				while(line != null){
